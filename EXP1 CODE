@@ -1,0 +1,33 @@
+import re
+
+resume = """
+Name: John Doe
+Email: john.doe@gmail.com
+Phone: +91 9876543210
+
+Skills: Python, SQL, Machine Learning, NLP
+
+Experience: 3 years
+"""
+
+name = re.search(r"Name:\s*(.*)", resume)
+email = re.findall(r'[\w\.-]+@[\w\.-]+\.\w+', resume)
+phone = re.findall(r'(?:\+91\s*)?\d{10}', resume)
+
+skills_list = ["Python", "Java", "SQL", "Machine Learning", "NLP"]
+skills = [s for s in skills_list if re.search(r'\b' + re.escape(s) + r'\b', resume, re.I)]
+
+exp = re.search(r'(\d+)\s+years?', resume, re.I)
+experience = int(exp.group(1)) if exp else 0
+
+print("Candidate Summary")
+print("Name:", name.group(1) if name else "Not Found")
+print("Email:", email)
+print("Phone:", phone)
+print("Skills:", skills)
+print("Experience:", experience, "years")
+
+if experience >= 2 and "Python" in skills:
+    print("Status: Eligible")
+else:
+    print("Status: Not Eligible")
