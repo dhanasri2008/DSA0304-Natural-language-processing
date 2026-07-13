@@ -1,0 +1,39 @@
+import re
+
+products = [
+    "Python Programming Book",
+    "Java Cookbook",
+    "SQL Basics",
+    "Machine Learning with Python",
+    "Wireless Mouse",
+    "Gaming Mouse",
+    "Python T-Shirt"
+]
+
+keyword = input("Enter search keyword: ")
+
+searches = {
+    "Exact": rf"^{re.escape(keyword)}$",
+    "Prefix": rf"^{re.escape(keyword)}",
+    "Suffix": rf"{re.escape(keyword)}$",
+    "Partial": rf"{re.escape(keyword)}"
+}
+
+report = {}
+
+for search_type, pattern in searches.items():
+    matches = [p for p in products if re.search(pattern, p)]
+    report[search_type] = len(matches)
+    print(f"\n{search_type} Search:")
+    print(matches if matches else "No matches")
+
+ci_matches = [p for p in products
+              if re.search(re.escape(keyword), p, re.IGNORECASE)]
+report["Case-Insensitive"] = len(ci_matches)
+
+print("\nCase-Insensitive Search:")
+print(ci_matches if ci_matches else "No matches")
+
+print("\nSearch Report:")
+for k, v in report.items():
+    print(f"{k}: {v} matching product(s)")
