@@ -1,0 +1,32 @@
+import random
+
+text = input("Enter a sentence: ")
+
+words = text.split()
+
+# Create bigrams
+bigrams = {}
+
+for i in range(len(words) - 1):
+    word = words[i]
+    next_word = words[i + 1]
+
+    if word not in bigrams:
+        bigrams[word] = []
+
+    bigrams[word].append(next_word)
+
+# Generate text
+start = words[0]
+generated = [start]
+current = start
+
+for i in range(10):
+    if current in bigrams:
+        current = random.choice(bigrams[current])
+        generated.append(current)
+    else:
+        break
+
+print("\nGenerated Text:")
+print(" ".join(generated))
