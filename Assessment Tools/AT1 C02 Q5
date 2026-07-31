@@ -1,0 +1,35 @@
+from tabulate import tabulate
+
+words=["writes","writing","written"]
+
+result=[]
+
+for word in words:
+
+    states=["Start"]
+
+    if word=="writes":
+        states.extend(["Read Root(write)","Suffix(s)","Final"])
+        root="write"
+        breakdown="write + s"
+        pattern="Regular"
+
+    elif word=="writing":
+        states.extend(["Read Root(write)","Suffix(ing)","Final"])
+        root="write"
+        breakdown="write + ing"
+        pattern="Regular"
+
+    elif word=="written":
+        states.extend(["Read Root(write)","Irregular Form","Final"])
+        root="write"
+        breakdown="write + en"
+        pattern="Irregular"
+
+    path=" → ".join(states)
+
+    result.append([word,path,breakdown,pattern,root])
+
+print(tabulate(result,
+headers=["Word","State Transition","Morphology","Pattern","Normalized"],
+tablefmt="grid"))
