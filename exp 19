@@ -1,0 +1,19 @@
+import nltk
+from nltk.wsd import lesk
+from nltk.tokenize import word_tokenize
+
+nltk.download('punkt_tab')
+
+sentence = input("Enter a sentence: ")
+word = input("Enter the ambiguous word: ")
+
+tokens = word_tokenize(sentence)
+
+sense = lesk(tokens, word)
+
+if sense:
+    print("\nWord :", word)
+    print("Sense :", sense.name())
+    print("Meaning :", sense.definition())
+else:
+    print("No suitable sense found.")
