@@ -1,0 +1,19 @@
+import re
+
+expression = input("Enter FOPC Expression: ")
+
+pattern = r'(\w+)\((.*?)\)'
+
+match = re.match(pattern, expression)
+
+if match:
+    predicate = match.group(1)
+    arguments = match.group(2).split(",")
+
+    print("\nPredicate :", predicate)
+    print("Arguments :")
+
+    for arg in arguments:
+        print(arg.strip())
+else:
+    print("Invalid FOPC Expression")
