@@ -1,0 +1,37 @@
+# Subject-Verb Agreement Checker
+
+subjects = {
+    "he": "singular",
+    "she": "singular",
+    "it": "singular",
+    "john": "singular",
+    "boy": "singular",
+    "girl": "singular",
+    "they": "plural",
+    "we": "plural",
+    "you": "plural",
+    "boys": "plural",
+    "girls": "plural"
+}
+
+sentence = input("Enter a sentence: ").lower().split()
+
+if len(sentence) >= 2:
+    subject = sentence[0]
+    verb = sentence[1]
+
+    if subject in subjects:
+        if subjects[subject] == "singular":
+            if verb.endswith("s"):
+                print("Correct Subject-Verb Agreement")
+            else:
+                print("Incorrect Subject-Verb Agreement")
+        else:
+            if not verb.endswith("s"):
+                print("Correct Subject-Verb Agreement")
+            else:
+                print("Incorrect Subject-Verb Agreement")
+    else:
+        print("Unknown Subject")
+else:
+    print("Invalid Sentence")
