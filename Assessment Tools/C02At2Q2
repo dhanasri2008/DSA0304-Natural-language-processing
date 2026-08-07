@@ -1,0 +1,60 @@
+# Q2: Rule-Based Morphological Parser
+
+import pandas as pd
+
+def parse_word(word):
+    word = word.lower()
+
+    if word == "disagree":
+        return {
+            "Original Word": word,
+            "Prefix": "dis-",
+            "Root": "agree",
+            "Suffix": "None",
+            "Transformation": "Derivational",
+            "Semantic Interpretation": "Opposite or lack of agreement",
+            "Normalized Base": "agree"
+        }
+
+    elif word == "agreement":
+        return {
+            "Original Word": word,
+            "Prefix": "None",
+            "Root": "agree",
+            "Suffix": "-ment",
+            "Transformation": "Derivational",
+            "Semantic Interpretation": "The state or result of agreeing",
+            "Normalized Base": "agree"
+        }
+
+    elif word == "agreeable":
+        return {
+            "Original Word": word,
+            "Prefix": "None",
+            "Root": "agree",
+            "Suffix": "-able",
+            "Transformation": "Derivational",
+            "Semantic Interpretation": "Pleasant or acceptable",
+            "Normalized Base": "agree"
+        }
+
+    else:
+        return {
+            "Original Word": word,
+            "Prefix": "None",
+            "Root": word,
+            "Suffix": "None",
+            "Transformation": "Base",
+            "Semantic Interpretation": "Original meaning",
+            "Normalized Base": word
+        }
+
+
+words = ["disagree", "agreement", "agreeable"]
+
+results = [parse_word(word) for word in words]
+
+df = pd.DataFrame(results)
+
+print("MORPHOLOGICAL PARSING REPORT")
+display(df)
