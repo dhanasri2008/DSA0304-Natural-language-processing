@@ -1,0 +1,56 @@
+# Q5: Inflectional Morphology-Based Normalization
+
+import pandas as pd
+
+def analyze_create_word(word):
+    word = word.lower()
+
+    if word == "create":
+        return {
+            "Original Word": word,
+            "Suffix": "None",
+            "Grammatical Category": "Base Form",
+            "Root": "create",
+            "Normalized Base": "create",
+            "Final Representation": "create"
+        }
+
+    elif word == "creates":
+        return {
+            "Original Word": word,
+            "Suffix": "-s",
+            "Grammatical Category": "Third-Person Singular Present",
+            "Root": "create",
+            "Normalized Base": "create",
+            "Final Representation": "create + -s → create"
+        }
+
+    elif word == "creating":
+        return {
+            "Original Word": word,
+            "Suffix": "-ing",
+            "Grammatical Category": "Present Participle",
+            "Root": "create",
+            "Normalized Base": "create",
+            "Final Representation": "create + -ing → create"
+        }
+
+    else:
+        return {
+            "Original Word": word,
+            "Suffix": "Unknown",
+            "Grammatical Category": "Unknown",
+            "Root": word,
+            "Normalized Base": word,
+            "Final Representation": word
+        }
+
+
+words = ["create", "creates", "creating"]
+
+results = [analyze_create_word(word) for word in words]
+
+df = pd.DataFrame(results)
+
+print("INFLECTIONAL MORPHOLOGY REPORT")
+display(df)
