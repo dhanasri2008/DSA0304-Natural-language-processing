@@ -1,0 +1,56 @@
+# Q3: Morphology-Based Normalization
+
+import pandas as pd
+
+def normalize_governance_words(word):
+    word = word.lower()
+
+    if word == "govern":
+        return {
+            "Original Word": word,
+            "Root": "govern",
+            "Affix": "None",
+            "Derivational Hierarchy": "govern",
+            "Normalized Representation": "govern",
+            "Final Output": "govern"
+        }
+
+    elif word == "government":
+        return {
+            "Original Word": word,
+            "Root": "govern",
+            "Affix": "-ment",
+            "Derivational Hierarchy": "govern → government",
+            "Normalized Representation": "govern",
+            "Final Output": "govern"
+        }
+
+    elif word == "governance":
+        return {
+            "Original Word": word,
+            "Root": "govern",
+            "Affix": "-ance",
+            "Derivational Hierarchy": "govern → governance",
+            "Normalized Representation": "govern",
+            "Final Output": "govern"
+        }
+
+    else:
+        return {
+            "Original Word": word,
+            "Root": word,
+            "Affix": "None",
+            "Derivational Hierarchy": word,
+            "Normalized Representation": word,
+            "Final Output": word
+        }
+
+
+words = ["govern", "government", "governance"]
+
+results = [normalize_governance_words(word) for word in words]
+
+df = pd.DataFrame(results)
+
+print("MORPHOLOGY-BASED NORMALIZATION REPORT")
+display(df)
