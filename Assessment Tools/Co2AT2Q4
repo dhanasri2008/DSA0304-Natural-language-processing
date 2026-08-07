@@ -1,0 +1,64 @@
+# Q4: Morphological Parsing and Normalization
+
+import pandas as pd
+
+def parse_activation_word(word):
+    word = word.lower()
+
+    if word == "activate":
+        return {
+            "Original Word": word,
+            "Prefix": "None",
+            "Root": "act",
+            "Suffix": "-ivate",
+            "Derivational Sequence": "act → activate",
+            "Word Class / Meaning": "Verb – cause something to become active",
+            "Normalized Base": "activate",
+            "Final Representation": "act + -ivate"
+        }
+
+    elif word == "activation":
+        return {
+            "Original Word": word,
+            "Prefix": "None",
+            "Root": "activate",
+            "Suffix": "-ion",
+            "Derivational Sequence": "act → activate → activation",
+            "Word Class / Meaning": "Noun – process of becoming active",
+            "Normalized Base": "activate",
+            "Final Representation": "activate + -ion"
+        }
+
+    elif word == "reactivation":
+        return {
+            "Original Word": word,
+            "Prefix": "re-",
+            "Root": "activate",
+            "Suffix": "-ion",
+            "Derivational Sequence": "act → activate → reactivate → reactivation",
+            "Word Class / Meaning": "Noun – process of becoming active again",
+            "Normalized Base": "activate",
+            "Final Representation": "re- + activate + -ion"
+        }
+
+    else:
+        return {
+            "Original Word": word,
+            "Prefix": "None",
+            "Root": word,
+            "Suffix": "None",
+            "Derivational Sequence": word,
+            "Word Class / Meaning": "Unknown",
+            "Normalized Base": word,
+            "Final Representation": word
+        }
+
+
+words = ["activate", "activation", "reactivation"]
+
+results = [parse_activation_word(word) for word in words]
+
+df = pd.DataFrame(results)
+
+print("MORPHOLOGICAL PARSING AND NORMALIZATION REPORT")
+display(df)
