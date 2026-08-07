@@ -1,0 +1,55 @@
+# Q1: Rule-Based Morphological Processing
+
+import pandas as pd
+
+def morphological_analysis(word):
+    word = word.lower()
+
+    # Rule for "analyzing"
+    if word == "analyzing":
+        return {
+            "Original Word": word,
+            "Root": "analyze",
+            "Affix": "-ing",
+            "Transformation Type": "Inflectional",
+            "Normalized Output": "analyze"
+        }
+
+    # Rule for "analysis"
+    elif word == "analysis":
+        return {
+            "Original Word": word,
+            "Root": "analy",
+            "Affix": "-sis",
+            "Transformation Type": "Derivational",
+            "Normalized Output": "analyze"
+        }
+
+    # Rule for "analytical"
+    elif word == "analytical":
+        return {
+            "Original Word": word,
+            "Root": "analyze",
+            "Affix": "-ical",
+            "Transformation Type": "Derivational",
+            "Normalized Output": "analyze"
+        }
+
+    else:
+        return {
+            "Original Word": word,
+            "Root": word,
+            "Affix": "None",
+            "Transformation Type": "Base",
+            "Normalized Output": word
+        }
+
+
+words = ["analyzing", "analysis", "analytical"]
+
+results = [morphological_analysis(word) for word in words]
+
+df = pd.DataFrame(results)
+
+print("MORPHOLOGICAL PROCESSING REPORT")
+display(df)
